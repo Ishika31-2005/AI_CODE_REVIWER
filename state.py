@@ -15,7 +15,7 @@ class State(rx.State):
     chat_input: str = ""
     chat_output: str = ""
 
-    # ✅ Setter for input
+  
     def set_chat_input(self, value: str):
         self.chat_input = value
 
@@ -27,7 +27,7 @@ class State(rx.State):
 
         self.errors = result.get("errors", [])
 
-        # ✅ SAFE FORMATTING (NO '*' replace)
+       
         formatted = result.get("ai_suggestions", "")
         formatted = formatted.replace("###", "\n\n###")
 
@@ -42,7 +42,7 @@ class State(rx.State):
         self.history = self.history[-10:]
         self.loading = False
 
-    # 🔹 AI HELP
+    #  AI HELP
     def ask_ai(self):
         if not self.chat_input.strip():
             self.chat_output = "Please enter a question"
@@ -50,7 +50,7 @@ class State(rx.State):
 
         response = get_ai_suggestion(self.chat_input)
 
-        # ✅ SAFE FORMATTING
+ 
         formatted = response.replace("###", "\n\n###")
 
         self.chat_output = formatted
